@@ -119,7 +119,6 @@ def updatefromGoogleSheets():
     df = pandas.DataFrame(array, columns=array[0])
     df = df.drop(df.index[0])
     df.to_excel(excelpath)
-    del df, array, data, service, credentials, credentialspath
 
     return
 

@@ -36,8 +36,8 @@ def generate_app_urls(request, res_dict):
     site_urls = list(map((lambda x: {
         'name': x,
         'url': request.build_absolute_uri(
-            '//' + base + '/apps/embalses/' + res_dict[x].replace(" ", "_") + '/'),
-        'active': request.path.endswith('embalses/' + res_dict[x] + '/')
+            '//' + base + '/apps/' + App.package + '/' + res_dict[x].replace(" ", "_") + '/'),
+        'active': request.path.endswith(App.package + '/' + res_dict[x] + '/')
     }), res_dict))
 
     return site_urls

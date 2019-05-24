@@ -4,17 +4,12 @@
 {% load tethys_gizmos %}
 {% load staticfiles %}
 
-
 {% block title %}{{ tethys_app.name }}{% endblock %}
 {% block app_icon %}<img src="{% static tethys_app.icon %}">{% endblock %}
-
-
 {% block app_title %}{{ tethys_app.name }}{% endblock %}
 
+
 {% block header_buttons %}
-{#    <div class="header-button glyphicon-button" data-toggle="tooltip" data-placement="bottom" title="Visualizar Ultimo Informe">#}
-{#        <a data-toggle="modal" data-target="#simulation-modal"><span class="glyphicon glyphicon-list-alt"></span></a>#}
-{#    </div>#}
     <div class="header-button glyphicon-button" data-toggle="tooltip" data-placement="bottom" title="Instrucciones Para Esta Pagina">
         <a data-toggle="modal" data-target="#pageinstructions-modal"><span class="glyphicon glyphicon-question-sign"></span></a>
     </div>
@@ -29,51 +24,25 @@
     </div>
 {% endblock %}
 
-
-{% block after_app_content %}
-{#    <div class="modal fade" id="simulation-modal" tabindex="-1" role="dialog" aria-labelledby="simulation-modal-label">#}
-{#        <div class="modal-dialog" role="document">#}
-{#            <div class="modal-content">#}
-{#                <div class="modal-header">#}
-{#                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span#}
-{#                            aria-hidden="true">&times;</span></button>#}
-{#                    <h5 class="modal-title" id="simulation-modal-label">Resultados del Simulacion</h5>#}
-{#                </div>#}
-{#                <div class="modal-body">#}
-{#                    <div id="simulationresults">No results to be shown</div>#}
-{#                </div>#}
-{#                <div class="modal-footer">#}
-{#                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>#}
-{#                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>#}
-{#                </div>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
-{% endblock %}
-
+{% block after_app_content %}{% endblock %}
 
 {% block app_navigation_items %}
 
     {% url 'reservoirs:home' as home_url %}
-    {% url 'reservoirs:reportar' as reportar_url %}
-    {% url 'reservoirs:instrucciones' as instrucciones_url %}
-    {% url 'reservoirs:simulations' as simulaciones_url %}
-    {% url 'reservoirs:reportes' as reportes_url %}
+    {% url 'reservoirs:update' as update_url %}
+    {% url 'reservoirs:instructions' as instructions_url %}
+    {% url 'reservoirs:simulations' as simulations_url %}
 
-    <li class="title">Navigación</li>
-    <li class="{% if request.path == home_url %}active{% endif %}"><a href="{{ home_url }}">Mapa y Sumario</a></li>
-
+    <li class="title">App Navigation</li>
+    <li class="{% if request.path == home_url %}active{% endif %}"><a href="{{ home_url }}">Overview and Map</a></li>
     {% if admin %}
-        <li class="{% if request.path == reportar_url %}active{% endif %}"><a href="{{ reportar_url }}">Reportar Niveles</a></li>
+        <li class="{% if request.path == update_url %}active{% endif %}"><a href="{{ update_url }}">Update Elevation History</a></li>
     {% endif %}
-    <li class="{% if request.path == instrucciones_url %}active{% endif %}"><a href="{{ instrucciones_url }}">Instrucciones Para El App</a></li>
-
-    <!-- The page for forcasts -->
-    <li class="title">Simulaciones y Prevision</li>
-    <li class="{% if request.path == simulaciones_url %}active{% endif %}"><a href="{{ simulaciones_url }}">Pronósticos Breves</a></li>
+    <li class="{% if request.path == instructions_url %}active{% endif %}"><a href="{{ instructions_url }}">Instructions for this App</a></li>
+    <li class="{% if request.path == simulations_url %}active{% endif %}"><a href="{{ simulations_url }}">Perform Short-Term Simulations</a></li>
 
     <!-- generate links to pages for each of the reservoirs -->
-    <li class="title">Datos Historicos y Estatisticas</li>
+    <li class="title">Historical Data and Statistics</li>
     {%if urls%}         <!-- if the controller returned a urls object, then for each one make an entry -->
         {% for url in urls %}
           <li class="{% if url.active %}active{% endif %}"><a href="{{ url.url }}">{{url.name}}</a></li>

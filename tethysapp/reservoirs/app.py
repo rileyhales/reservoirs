@@ -2,11 +2,9 @@ from tethys_sdk.base import TethysAppBase, url_map_maker
 
 # todo make the update button not ask for login every time (make it work on the server???)
 # todo record demonstration videos
-
-# todo OPTIONAL- improve the written instructions section
-# todo OPTIONAL- create a persistent store of old reports and email/download/print option (header button)
-# todo OPTIONAL- let the user toggle between elevations and depths on the historical charts
-# todo OPTIONAL- add hydrologic factors to analysis like evaporation or infiltration?
+# todo upgrade to a database of bathymetry and elevation history
+# todo let the user toggle between elevations and depths on the historical charts
+# todo add hydrologic factors to analysis like evaporation or infiltration?
 
 class Reservoirs(TethysAppBase):
     """
@@ -38,20 +36,20 @@ class Reservoirs(TethysAppBase):
                 controller='reservoirs.controllers.home'
             ),
             UrlMap(
-                name='reportar',
-                url='reservoirs/reportar',
-                controller='reservoirs.controllers.reportar'
+                name='update',
+                url='reservoirs/update',
+                controller='reservoirs.controllers.update'
             ),
             UrlMap(
-                name='instrucciones',
-                url='reservoirs/instrucciones',
+                name='instructions',
+                url='reservoirs/instructions',
                 controller='reservoirs.controllers.instructions'
             ),
 
             # SIMULATIONS PAGES
             UrlMap(
                 name='simulations',
-                url='reservoirs/simulaciones',
+                url='reservoirs/simulations',
                 controller='reservoirs.controllers.simulations'
             ),
 

@@ -28,7 +28,7 @@ def home(request):
 
 
 @login_required()
-def reportar(request):
+def update(request):
     """
     controller for the reporting page
     """
